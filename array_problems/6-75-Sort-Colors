@@ -1,0 +1,47 @@
+// https://leetcode.com/problems/sort-colors/description/
+//  Dutch National Flag algorithm 
+// 3-way partitioning
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int low=0,mid=0,high=nums.size()-1;
+        while(mid<=high){  // mid iterating from start to high
+            if(nums[mid]==0){
+                swap(nums[low],nums[mid]);
+                low++;
+                mid++;
+            }
+            else if(nums[mid]==1){
+                mid++;
+            }
+            else{
+                swap(nums[mid],nums[high]);
+                high--;
+            }
+        }
+    }
+};
+
+/*-------------------------------------------------------------------------------------*/
+
+// using two loops both loop combine iterating array once so TC->O(n)
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int n=nums.size();
+        int j=0;
+        int temp;
+        for(int i=0;i<n;i++){
+            if(nums[i]==0){
+                swap(nums[i],nums[j]);
+                j++;
+            }
+        }
+        for(int k=j;k<n;k++){
+            if(nums[k]==1){
+                swap(nums[j],nums[k]);
+                j++;
+            }
+        }
+    }
+};
